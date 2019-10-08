@@ -1,0 +1,29 @@
+{
+  "name": "@hmlauth/randomizer",
+  "version": "1.0.0",
+  "description": "Randomizes groups of students",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hmlauth/randomizer.git"
+  },
+  "keywords": [
+    "npm",
+    "hmlauth",
+    "package",
+    "randomizer",
+    "students",
+    "groups",
+    "group",
+    "creation"
+  ],
+  "author": "Hanna Lauth",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hmlauth/randomizer/issues"
+  },
+  "homepage": "https://github.com/hmlauth/randomizer#readme"
+}
