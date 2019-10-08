@@ -1,7 +1,7 @@
 const init = require('./init/index');
-const { shuffle } = require('./prototypes/shuffle');
+const createGroups = require('./create/groups');
 
-module.exports = { init, shuffle };
+module.exports = { init, createGroups };
 
 
 
