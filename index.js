@@ -1,3 +1,3 @@
-module.exports = funtion runTest() {
+module.exports = function runTest() {
     return 'Success!'
 }
