@@ -1,5 +1,5 @@
 // Define functions to handle read files
-function createArray(studentsRoser) {
+function createArray(students) {
     return students.split('\n');
 };
 
