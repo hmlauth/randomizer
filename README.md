@@ -1,2 +1,5 @@
-# randomizer
-Node module intended for educators in need of creating groups.
+# @hmlauth/randomizer
+<img alt="npm (scoped)" src="https://img.shields.io/npm/v/@hmlauth/randomizer">
+
+Randomizing groups in all shapes and sizes.
+
