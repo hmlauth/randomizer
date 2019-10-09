@@ -1,7 +1,11 @@
-const {init, createGroups} = require('./index');
+const { getStudents, createGroups} = require('@hmlauth/randomizer');
 
-const allStudents = init.allStudents('students_roster_example.txt');
-createGroups(4, true, allStudents);
+(async () => {
 
-const studentsByStrength = init.byStrength('students_strengths_example.txt');
-createGroups(null, true, studentsByStrength);
+    const allStudents = await getStudents('students_roster_example.txt');
+    const byStrength = await getStudents('students_strengths_example.txt');
+
+    createGroups(3, true, allStudents);
+    createGroups(null, true, byStrength);
+
+})();

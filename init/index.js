@@ -1,17 +1,28 @@
 const fs = require('fs');
+const util = require('util');
 const { createArray, createReferences } = require('../create/references');
+const readFileAsync = util.promisify(fs.readFile);
 
-function allStudents(filename) {
-    const studentList = fs.readFileSync(filename, 'utf8');
-    const allStudents = createArray(studentList);
-    return { allStudents }
+// Read student lists
+// return student lists in appropriate format (array, object)
+async function getStudents(filename) {
+    try {
 
+        const studentList = await readFileAsync(filename, 'utf8');
+        const organizedByStrength = studentList.split('\n').indexOf('STRONG') > -1 ? true : false;
+
+        if (organizedByStrength) {
+            const byStrength = await createReferences(studentList);
+            return byStrength
+            
+        } else {
+            const allStudents = await createArray(studentList);
+            return {allStudents}
+        }
+
+    } catch (err) {
+        console.log(err)
+    }
 };
 
-function byStrength(filename) {
-    const studentStrengthList = fs.readFileSync(filename, 'utf8'); 
-    const { strongStudents, yetStrongStudents } = createReferences(studentStrengthList);
-    return { strongStudents, yetStrongStudents }
-};
-
-module.exports = { allStudents, byStrength };
+module.exports = { getStudents };

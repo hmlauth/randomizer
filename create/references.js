@@ -1,18 +1,28 @@
+async function createArray(students) {
+    try {
 
-function createArray(students) {
-    return students.split('\n')
+       return students.split('\n');
+        
+    } catch (err) {
+        console.log(err)
+    }
 };
 
-function createReferences(studentsByStrength) {
-    
-    let students = studentsByStrength.split('\n').slice(1);
-    let yetStrongIndex = students.indexOf('YETSTRONG');
-    let yetStrongStudents = students.slice(yetStrongIndex + 1);
-    let strong = students.slice(0, yetStrongIndex);
-    let strongStudents = {};
-    strong.forEach(cv => strongStudents[cv] = []);
-   
-    return {strongStudents, yetStrongStudents}
+async function createReferences(studentsByStrength) {
+    try {
+
+        let students = studentsByStrength.split('\n').slice(1);
+        let yetStrongIndex = students.indexOf('YETSTRONG');
+        let yetStrongStudents = students.slice(yetStrongIndex + 1);
+        let strongList = students.slice(0, yetStrongIndex);
+        let strongStudents = {};
+        strongList.forEach(cv => strongStudents[cv] = []);
+       
+        return {strongStudents, yetStrongStudents}
+
+    } catch (err) {
+        console.log(err)
+    }
 
 };
 

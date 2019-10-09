@@ -25,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/hmlauth/randomizer/issues"
   },
-  "homepage": "https://github.com/hmlauth/randomizer#readme"
+  "homepage": "https://github.com/hmlauth/randomizer#readme",
+  "dependencies": {
+    "util": "^0.12.1"
+  }
 }
