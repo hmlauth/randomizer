@@ -17,9 +17,8 @@ Array.prototype.shuffle = function() {
     }
 
     return this;
-}
-
+};
 
 module.exports = {
     shuffle: Array.prototype.shuffle
-}
+};

@@ -1,6 +1,6 @@
-// Define functions to handle read files
+
 function createArray(students) {
-    return students.split('\n');
+    return students.split('\n')
 };
 
 function createReferences(studentsByStrength) {
@@ -10,7 +10,7 @@ function createReferences(studentsByStrength) {
     let yetStrongStudents = students.slice(yetStrongIndex + 1);
     let strong = students.slice(0, yetStrongIndex);
     let strongStudents = {};
-    strong.forEach(cv => strongStudents[cv] = [])
+    strong.forEach(cv => strongStudents[cv] = []);
    
     return {strongStudents, yetStrongStudents}
 

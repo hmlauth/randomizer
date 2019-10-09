@@ -1,20 +1,24 @@
 const { shuffle } = require('../prototypes/shuffle');
 const { byAllStudents, byStrength } = require('./groups');
-// TODO: Consider spread operator ...args
 
 module.exports = function createGroups(...args) {
-    let [groupSize, bool, array, object] = args;
 
-    // Shuffle array if true
-    if (bool) { array.shuffle(); }
+    let [groupSize, bool, object] = args;
 
-    switch (args.length) {
-        case 4:
-            byStrength(array, object);
+    switch (Object.keys(object).length) {
+
+        case 2:
+            let { strongStudents, yetStrongStudents } = object; 
+            if (bool) { yetStrongStudents.shuffle(); }
+            byStrength(yetStrongStudents, strongStudents);
             break;
-        case 3:
-            byAllStudents(groupSize, array, array.length);
+
+        case 1:
+            const { allStudents } = object;
+            if (bool) { allStudents.shuffle(); }
+            byAllStudents(groupSize, allStudents, allStudents.length);
             break;
+            
     }
 
 }
