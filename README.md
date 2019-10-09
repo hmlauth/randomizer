@@ -8,7 +8,33 @@ Randomizes groups of students.
 npm i @hmlauth/randomizer
 ```
 
-## How to use
+## Usage
+
+```
+const {init, createGroups} = require('@hmlauth/randomizer');
+
+const allStudents = init.allStudents('students_roster.txt');
+createGroups(4, true, allStudents);
+
+const studentsByStrength = init.byStrength('students_strengths.txt');
+createGroups(null, true, studentsByStrength);
+```
+
+- `init` is an object containing two methods. Each methods accepts their respective file name as an argument:
+    * `.allStudents(filename)` 
+        - returns an object with one member: allStudents (array)
+        
+    * `.byStrength(filename)` 
+        - returns an object with two members: strongStudents (object) and yetStrongStudents (array)
+
+- `createGroups()` is a function that accepts up to 4 arguements
+    * `groupSize` - Number of people per group 
+    * `boolean` - True/false if you would like students shuffled
+    * `object` - Students to be organized
+
+
+
+## Set up
 1. Create 2 `.txt` files at the root of your directory. The first will contain your full student roster and the second will contain students divided into two categories: `strong` and `yetStrong`. I recommend the following filenames:
 
     - `students_roster.txt`
@@ -20,8 +46,9 @@ npm i @hmlauth/randomizer
     - (<em>required</em>) No extra lines are used. 
     - (<em>optional</em>) First and last names. 
 
-`students_roster.txt`
 ```
+students_roster.txt
+
 1  firstName1 lastName1
 2  firstName2 lastName2
 3  firstName3 lastName3
@@ -42,9 +69,9 @@ npm i @hmlauth/randomizer
 18 firstName18 lastName18
 ```
 
-`students_strengths.text`
-
 ```
+students_strengths.text
+
 1 STRONG
 2  firstName1 lastName1
 3  firstName2 lastName2
@@ -66,26 +93,5 @@ npm i @hmlauth/randomizer
 19 firstName17 lastName17
 20 firstName18 lastName18
 ```
-3. In the file where you require `randomizer`, extract `init` and `createGroups`.
 
-    - `init` is an object containing two functions, each accept their respective file name as an argument:
-        * `allStudents()` 
-        > returns an object with one member: allStudents (array)
-        * `byStrength()` 
-        > returns an object with two members: strongStudents (object) and yetStrongStudents (array)
-
-    - `createGroups()` is a function that accepts up to 4 arguements
-        * `groupSize` - Number of people per group 
-        * `boolean` - True/false if you would like students shuffled
-        * `object` - Students to be organized
-
-```
-const {init, createGroups} = require('@hmlauth/randomizer');
-
-const allStudents = init.allStudents('students_roster.txt');
-createGroups(4, true, allStudents);
-
-const studentsByStrength = init.byStrength('students_strengths.txt');
-createGroups(null, true, studentsByStrength);
-```
 
