@@ -2,7 +2,7 @@ function byAllStudents(groupSize, array, length) {
     let slicedArray;
     console.log('\n');
     if (array.length > 0) {
-        
+
         for (let i = 0; i < groupSize; i++) {
             console.log(array[i]);
             slicedArray = array.slice(groupSize);
@@ -10,7 +10,7 @@ function byAllStudents(groupSize, array, length) {
         console.log('\n--------');
         byAllStudents(groupSize, slicedArray, length);
     } else {
-console.log(`
+        console.log(`
 Groups complete!
 Total Students: ${length}
 Group Size: ${groupSize} \n`);
@@ -19,11 +19,11 @@ Group Size: ${groupSize} \n`);
 
 function byStrength(array, object) {
     let keysInObject = Object.keys(object);
-     // if yetStrongStudents array still has students to assign to a group
-     if (array.length > 0) {
+    // if yetStrongStudents array still has students to assign to a group
+    if (array.length > 0) {
         // Distribute each yetStrongStudent among strongStudents
         keysInObject.forEach(key => {
-            
+
             // Select next student in line  
             let selected = array.shift();
             if (selected) {
@@ -40,7 +40,8 @@ function byStrength(array, object) {
 
 };
 
- module.exports = {
-     byAllStudents, 
-     byStrength
+module.exports = {
+    byAllStudents,
+    byStrength
 }
+
