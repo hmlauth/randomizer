@@ -1,6 +1,7 @@
+const {print} = require('./print');
+
 function byAllStudents(groupSize, array, length) {
     let slicedArray;
-    console.log('\n');
     if (array.length > 0) {
 
         for (let i = 0; i < groupSize; i++) {
@@ -10,11 +11,13 @@ function byAllStudents(groupSize, array, length) {
         console.log('\n--------');
         byAllStudents(groupSize, slicedArray, length);
     } else {
-        console.log(`
+
+console.log(`
 Groups complete!
 Total Students: ${length}
 Group Size: ${groupSize} \n`);
-    };
+
+    }
 };
 
 function byStrength(array, object) {
@@ -35,9 +38,8 @@ function byStrength(array, object) {
 
     }
     else if (array.length === 0) { // until no more students available to assign
-        console.log('\n', object, '\n'); // print final object with groups
+        print(object);
     }
-
 };
 
 module.exports = {
