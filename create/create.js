@@ -7,16 +7,16 @@ module.exports = {
 
         switch (Object.keys(object).length) {
 
-            case 2:
-                let { strongStudents, yetStrongStudents } = object;
-                if (bool) { yetStrongStudents.shuffle(); }
-                byStrength(yetStrongStudents, strongStudents);
-                break;
-
             case 1:
                 const { allStudents } = object;
                 if (bool) { allStudents.shuffle(); }
                 byAllStudents(groupSize, allStudents, allStudents.length);
+                break;
+
+            case 2:
+                let { strongStudents, yetStrongStudents } = object;
+                if (bool) { yetStrongStudents.shuffle(); }
+                byStrength(yetStrongStudents, strongStudents);
                 break;
 
         }
