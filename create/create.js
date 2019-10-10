@@ -2,8 +2,7 @@ const { shuffle } = require('../prototypes/shuffle');
 const { byAllStudents, byStrength } = require('./groups');
 
 module.exports = {
-    createGroups: (...args) => {
-        let [groupSize, bool, object] = args;
+    createGroups: (groupSize, bool, object) => {
 
         switch (Object.keys(object).length) {
 

@@ -5,8 +5,7 @@ module.exports = {
             object[key].forEach(student => console.log(student));
             console.log(`\n`);
         }
-        console.log('Groups complete!\n');
-        
+        console.log('Groups complete!\n'); 
     }
 };
 
