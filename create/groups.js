@@ -1,5 +1,4 @@
 const {print} = require('./print');
-console.log(print);
 
 function byAllStudents(groupSize, array, length) {
     let slicedArray;
