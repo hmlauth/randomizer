@@ -95,3 +95,18 @@ students_strengths.text
 ```
 
 
+INPUT
+- List of students in text file
+
+OUTPUT 
+- Should allow user to do what they want with the data
+- 
+
+
+CONSTRAINTS
+- User may want to run the program again to shuffle the groups until they like the result
+- User may want a track record of previous groups
+- 
+
+EXAMPLES
+- Array of students

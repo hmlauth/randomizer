@@ -1,14 +1,15 @@
 module.exports = {
-    createArray: async (students) => {
+    createArray: async students => {
         try {
 
             return students.split('\n');
              
          } catch (err) {
-             console.log(err)
+             alert(err)
          }
     },
-    createReferences: async (studentsByStrength) => {
+    createReferences: async studentsByStrength => {
+
         try {
 
             let students = studentsByStrength.split('\n').slice(1);
@@ -21,7 +22,7 @@ module.exports = {
             return {strongStudents, yetStrongStudents}
     
         } catch (err) {
-            console.log(err)
+            alert(err)
         }
     }
 }

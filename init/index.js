@@ -6,7 +6,8 @@ const readFileAsync = util.promisify(fs.readFile);
 // Read student lists
 // return student lists in appropriate format (array, object)
 module.exports = {
-    getStudents: async (filename) => {
+    getStudents: async filename => {
+        
         try {
 
             const studentList = await readFileAsync(filename, 'utf8');
@@ -21,8 +22,11 @@ module.exports = {
                 return {allStudents}
             }
     
-        } catch (err) {
-            console.log(err)
+        } 
+        
+        catch (err) {
+           alert(err)
+
         }
     }
 }
