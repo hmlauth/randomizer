@@ -13,8 +13,8 @@ module.exports = {
             fullRoster.shuffle();
         };
 
-        const finalGroups = []
-
+        const finalGroups = [];
+        
         while (fullRoster.length > 0) {
             let group = fullRoster.splice(-groupSize);
             finalGroups.push(group);
@@ -24,7 +24,7 @@ module.exports = {
 
     },
     byStrength: (studentList, shouldShuffle) => {
-        // Filter students by strengthLevel (strong, standard, weak)
+
         const strongStudents = studentList["strong"];
         const standardStudents = studentList["standard"];
 
@@ -33,19 +33,15 @@ module.exports = {
             standardStudents.shuffle();
         };
 
-        const groupedByStrength = [];
-
-        strongStudents
-        .forEach(student => groupedByStrength.push([student]));
+        let finalGroups = strongStudents.map(student => [student]);
         
         let groupNumber = 0;
         while (standardStudents.length > 0) {
             let student = standardStudents.shift(); 
-            groupedByStrength[groupNumber].push(student);
-            groupNumber === groupedByStrength.length - 1 ? groupNumber = 0 : groupNumber++;
+            finalGroups[groupNumber].push(student);
+            groupNumber === finalGroups.length - 1 ? groupNumber = 0 : groupNumber++;
         }
         
-        
-        return groupedByStrength
+        return finalGroups
     }
 };
