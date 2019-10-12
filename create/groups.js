@@ -1,16 +1,14 @@
+'use strict';
+
 const { shuffle } = require('../prototypes/shuffle');
-const { Object, hasStrengthLevel } = require('../utils/filter');
-/*
-
-TODO: Add shuffle check based on passed in boolean value
-
-*/
+const { Object, hasStrengthLevel } = require('../util/filter');
 
 module.exports = {
+
     byAllStudents: (studentList, groupSize, shouldShuffle) => {
         studentList = Object.keys(studentList);
 
-        if(shouldShuffle) {
+        if (shouldShuffle) {
             studentList.shuffle();
         };
 

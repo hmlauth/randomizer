@@ -1,5 +1,5 @@
 module.exports = { 
-    init: require('./init/index'),
+    init: require('./init'),
     createGroups: require('./create/groups')
 }
 

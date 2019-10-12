@@ -1,3 +1,5 @@
+'use strict';
+
 
 Object.filter = (obj, desiredStrengthLevel, predicate) => 
     Object.keys(obj)
@@ -5,8 +7,13 @@ Object.filter = (obj, desiredStrengthLevel, predicate) =>
         .reduce( (res, key) => (res[key] = obj[key], res), {} )
 
 
+
 function hasStrengthLevel(strengthLevel, desiredStrengthLevel) {
      return strengthLevel === desiredStrengthLevel
 }
 
-module.exports = {Object, hasStrengthLevel}
+
+module.exports = { 
+    Object, 
+    hasStrengthLevel 
+};

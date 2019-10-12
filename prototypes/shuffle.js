@@ -1,3 +1,5 @@
+'use strict';
+
 // Fisher-Yates Shuffle
 Array.prototype.shuffle = function() {
     var currentIndex = this.length,
