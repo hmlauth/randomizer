@@ -1,21 +1,22 @@
 'use strict';
 
 const { shuffle } = require('../prototypes/shuffle');
-const { hasStrengthLevel } = require('../util/filter');
 
 module.exports = {
 
     byAllStudents: (studentList, groupSize, shouldShuffle) => {
-        studentList = Object.keys(studentList);
-
+        
+        const fullRoster = studentList["strong"].concat(studentList["standard"]);
+       
+       
         if (shouldShuffle) {
-            studentList.shuffle();
+            fullRoster.shuffle();
         };
 
         const finalGroups = []
 
-        while (studentList.length > 0) {
-            let group = studentList.splice(-groupSize);
+        while (fullRoster.length > 0) {
+            let group = fullRoster.splice(-groupSize);
             finalGroups.push(group);
         } 
 
@@ -24,23 +25,26 @@ module.exports = {
     },
     byStrength: (studentList, shouldShuffle) => {
         // Filter students by strengthLevel (strong, standard, weak)
-        const strongStudents = Object.filter(studentList, "strong", hasStrengthLevel);
-        const standardStudents = Object.filter(studentList, "standard", hasStrengthLevel);
-        const strongStudentNames = Object.keys(strongStudents);
-        const standardStudentNames = Object.keys(standardStudents);
+        const strongStudents = studentList["strong"];
+        const standardStudents = studentList["standard"];
 
         if (shouldShuffle) {
-            strongStudentNames.shuffle();
-            standardStudentNames.shuffle();
+            strongStudents.shuffle();
+            standardStudents.shuffle();
         };
 
         const groupedByStrength = [];
 
-        strongStudentNames
-        .forEach(student => groupedByStrength.push([student]))
+        strongStudents
+        .forEach(student => groupedByStrength.push([student]));
         
-        groupedByStrength
-        .forEach(group => group.push(standardStudentNames.shift()))
+        let groupNumber = 0;
+        while (standardStudents.length > 0) {
+            let student = standardStudents.shift(); 
+            groupedByStrength[groupNumber].push(student);
+            groupNumber === groupedByStrength.length - 1 ? groupNumber = 0 : groupNumber++;
+        }
+        
         
         return groupedByStrength
     }
