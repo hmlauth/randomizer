@@ -1,49 +1,59 @@
-const {print} = require('./print');
+const { shuffle } = require('../prototypes/shuffle');
+const { Object, hasStrengthLevel } = require('../utils/filter');
+/*
 
-function byAllStudents(groupSize, array, length) {
-    let slicedArray;
-    if (array.length > 0) {
+TODO: Add shuffle check based on passed in boolean value
 
-        for (let i = 0; i < groupSize; i++) {
-            console.log(array[i]);
-            slicedArray = array.slice(groupSize);
-        }
-        console.log('\n--------');
-        byAllStudents(groupSize, slicedArray, length);
-    } else {
-
-console.log(`
-Groups complete!
-Total Students: ${length}
-Group Size: ${groupSize} \n`);
-
-    }
-};
-
-function byStrength(array, object) {
-    let keysInObject = Object.keys(object);
-    // if yetStrongStudents array still has students to assign to a group
-    if (array.length > 0) {
-        // Distribute each yetStrongStudent among strongStudents
-        keysInObject.forEach(key => {
-
-            // Select next student in line  
-            let selected = array.shift();
-            if (selected) {
-                object[key].push(selected); // push student to array
-            }
-        });
-
-        byStrength(array, object); // continue loop
-
-    }
-    else if (array.length === 0) { // until no more students available to assign
-        print(object);
-    }
-};
+*/
 
 module.exports = {
-    byAllStudents,
-    byStrength
-}
+    byAllStudents: (studentList, groupSize, shouldShuffle) => {
+        studentList = Object.keys(studentList);
 
+        if(shouldShuffle) {
+            studentList.shuffle();
+        };
+
+        let finalGroups = {};
+        let groupNumber = 1;
+
+        do {
+            let group = studentList.splice(-groupSize);
+            finalGroups[`${groupNumber}`] = group;
+            groupNumber++
+        } while (studentList.length > 0);
+
+        return finalGroups
+
+    },
+    byStrength: (studentList, shouldShuffle) => {
+        // Filter students by strengthLevel (strong, standard, weak)
+        let strongStudents = Object.filter(studentList, "strong", hasStrengthLevel);
+        let standardStudents = Object.filter(studentList, "standard", hasStrengthLevel);
+        let strongStudentNames = Object.keys(strongStudents);
+        let standardStudentNames = Object.keys(standardStudents);
+       
+        if (shouldShuffle) {
+            strongStudentNames.shuffle();
+            standardStudentNames.shuffle();
+        };
+
+        let groupsByStrength = {};
+        let groupNumber = 1
+
+        strongStudentNames.forEach(student => {
+            groupsByStrength[groupNumber] = [student];
+            groupNumber < strongStudentNames.length ? groupNumber++ : groupNumber = 1;
+        });
+
+        do {
+            
+            let [student] = standardStudentNames.splice(-1);
+            groupsByStrength[groupNumber].push(student);
+            groupNumber === 5 ? groupNumber = 1: groupNumber++;
+
+        } while (standardStudentNames.length > 0);
+        
+        return groupsByStrength
+    }
+}

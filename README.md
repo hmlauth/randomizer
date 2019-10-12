@@ -100,7 +100,7 @@ INPUT
 
 OUTPUT 
 - Should allow user to do what they want with the data
-- 
+- Package up students in an object
 
 
 CONSTRAINTS
