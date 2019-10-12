@@ -8,13 +8,12 @@ module.exports = {
         
         const fullRoster = studentList["strong"].concat(studentList["standard"]);
        
-       
         if (shouldShuffle) {
             fullRoster.shuffle();
         };
 
         const finalGroups = [];
-        
+
         while (fullRoster.length > 0) {
             let group = fullRoster.splice(-groupSize);
             finalGroups.push(group);
@@ -33,7 +32,7 @@ module.exports = {
             standardStudents.shuffle();
         };
 
-        let finalGroups = strongStudents.map(student => [student]);
+        const finalGroups = strongStudents.map(student => [student]);
         
         let groupNumber = 0;
         while (standardStudents.length > 0) {
