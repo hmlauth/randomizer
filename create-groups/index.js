@@ -1,7 +1,7 @@
 'use strict';
 
 const { shuffle } = require('../prototypes/shuffle');
-const { Object, hasStrengthLevel } = require('../util/filter');
+const { hasStrengthLevel } = require('../util/filter');
 
 module.exports = {
 
@@ -12,44 +12,36 @@ module.exports = {
             studentList.shuffle();
         };
 
-        let finalGroups = {};
-        let groupNumber = 1;
+        const finalGroups = []
 
-        do {
+        while (studentList.length > 0) {
             let group = studentList.splice(-groupSize);
-            finalGroups[groupNumber] = group;
-            groupNumber++
-        } while (studentList.length > 0);
+            finalGroups.push(group);
+        } 
 
         return finalGroups
 
     },
     byStrength: (studentList, shouldShuffle) => {
         // Filter students by strengthLevel (strong, standard, weak)
-        let strongStudents = Object.filter(studentList, "strong", hasStrengthLevel);
-        let standardStudents = Object.filter(studentList, "standard", hasStrengthLevel);
-        let strongStudentNames = Object.keys(strongStudents);
-        let standardStudentNames = Object.keys(standardStudents);
+        const strongStudents = Object.filter(studentList, "strong", hasStrengthLevel);
+        const standardStudents = Object.filter(studentList, "standard", hasStrengthLevel);
+        const strongStudentNames = Object.keys(strongStudents);
+        const standardStudentNames = Object.keys(standardStudents);
 
         if (shouldShuffle) {
             strongStudentNames.shuffle();
             standardStudentNames.shuffle();
         };
 
-        let groupsByStrength = {};
-        let groupNumber = 1
+        const groupedByStrength = [];
 
-        strongStudentNames.forEach(student => {
-            groupsByStrength[groupNumber] = [student];
-            groupNumber < strongStudentNames.length ? groupNumber++ : groupNumber = 1;
-        });
-
-        do {
-            let [student] = standardStudentNames.splice(-1);
-            groupsByStrength[groupNumber].push(student);
-            groupNumber === 5 ? groupNumber = 1: groupNumber++;
-        } while (standardStudentNames.length > 0);
+        strongStudentNames
+        .forEach(student => groupedByStrength.push([student]))
         
-        return groupsByStrength
+        groupedByStrength
+        .forEach(group => group.push(standardStudentNames.shift()))
+        
+        return groupedByStrength
     }
 }
