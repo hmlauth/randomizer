@@ -1,6 +1,6 @@
 module.exports = { 
     init: require('./init'),
-    createGroups: require('./create/groups')
+    createGroups: require('./create-groups')
 }
 
 
