@@ -17,7 +17,7 @@ module.exports = {
 
         do {
             let group = studentList.splice(-groupSize);
-            finalGroups[`${groupNumber}`] = group;
+            finalGroups[groupNumber] = group;
             groupNumber++
         } while (studentList.length > 0);
 
@@ -30,7 +30,7 @@ module.exports = {
         let standardStudents = Object.filter(studentList, "standard", hasStrengthLevel);
         let strongStudentNames = Object.keys(strongStudents);
         let standardStudentNames = Object.keys(standardStudents);
-       
+
         if (shouldShuffle) {
             strongStudentNames.shuffle();
             standardStudentNames.shuffle();
@@ -45,11 +45,9 @@ module.exports = {
         });
 
         do {
-            
             let [student] = standardStudentNames.splice(-1);
             groupsByStrength[groupNumber].push(student);
             groupNumber === 5 ? groupNumber = 1: groupNumber++;
-
         } while (standardStudentNames.length > 0);
         
         return groupsByStrength
