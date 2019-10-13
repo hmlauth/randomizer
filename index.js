@@ -1,7 +1,5 @@
-const { getStudents } = require('./init/index');
-const {createGroups} = require('./create/create');
-
-module.exports = { getStudents, createGroups };
-
-
+module.exports = { 
+    init: require('./init'),
+    createGroups: require('./create-groups')
+}
 

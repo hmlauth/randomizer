@@ -1,3 +1,5 @@
+'use strict';
+
 // Fisher-Yates Shuffle
 Array.prototype.shuffle = function() {
     var currentIndex = this.length,
@@ -17,8 +19,4 @@ Array.prototype.shuffle = function() {
     }
 
     return this;
-};
-
-module.exports = {
-    shuffle: Array.prototype.shuffle
 };
