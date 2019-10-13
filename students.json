@@ -1,21 +1,5 @@
 {
-    "name1": "strong",
-    "name2": "standard",
-    "name3": "strong",
-    "name4": "strong",
-    "name5": "strong",
-    "name6": "strong",
-    "name7": "standard",
-    "name8": "standard",
-    "name9": "standard",
-    "name10": "standard",
-    "name11": "standard",
-    "name12": "standard",
-    "name13": "standard",
-    "name14": "standard",
-    "name15": "standard",
-    "name16": "standard",
-    "name17": "standard",
-    "name18": "standard"
+    "strong": ["name1", "name2", "name3", "name4", "name5"],
+    "standard": ["name6","name7","name8","name9","name10","name11","name12","name13", "name14","name15","name16","name17","name18"]
 }
 
