@@ -4,7 +4,7 @@ const { shuffle } = require('../prototypes/shuffle');
 
 module.exports = {
 
-    byAllStudents: (studentList, groupSize, shouldShuffle) => {
+    distributeRandomly: (studentList, groupSize, shouldShuffle) => {
         
         const fullRoster = studentList["strong"].concat(studentList["standard"]);
        
@@ -22,25 +22,46 @@ module.exports = {
         return finalGroups
 
     },
-    byStrength: (studentList, shouldShuffle) => {
+    distributeEvenlyByStrengthLevel: (studentList, shouldShuffle) => {
 
         const strongStudents = studentList["strong"];
         const standardStudents = studentList["standard"];
+
+        const groupSize = Math.floor( standardStudents.length / strongStudents.length );
+        let remainder = standardStudents.length % strongStudents.length;
 
         if (shouldShuffle) {
             strongStudents.shuffle();
             standardStudents.shuffle();
         };
 
-        const finalGroups = strongStudents.map(student => [student]);
-        
-        let groupNumber = 0;
+        let finalGroups = strongStudents.map(student => [student]);
+
         while (standardStudents.length > 0) {
-            let student = standardStudents.shift(); 
-            finalGroups[groupNumber].push(student);
-            groupNumber === finalGroups.length - 1 ? groupNumber = 0 : groupNumber++;
-        }
+
+            finalGroups = finalGroups.map(strongStudent => {
+                let subGroup;
+
+                if (remainder > 0) {
+                    subGroup = standardStudents.splice(0, groupSize + 1);
+                    remainder--;
+                } else {
+                    subGroup = standardStudents.splice(0, groupSize);
+                }
+        
+                return strongStudent.concat(subGroup);
+            });
+        };
         
         return finalGroups
     }
 };
+
+
+
+// standardStudents.length !== remainder ? 
+//                 finalGroups[groupNumber].push(standardStudents.splice(-groupSize)[0]) &&
+//                 groupNumber++ 
+//                 :
+//                 groupNumber = 0 &&
+//                 finalGroups[groupNumber].push(standardStudents.splice(-1)[0]);    
