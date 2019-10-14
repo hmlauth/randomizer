@@ -4,7 +4,7 @@ const { shuffle } = require('../prototypes/shuffle');
 
 module.exports = {
 
-    byAllStudents: (studentList, groupSize, shouldShuffle) => {
+    distributeRandomly: (studentList, groupSize, shouldShuffle) => {
         
         const fullRoster = studentList["strong"].concat(studentList["standard"]);
        
@@ -22,26 +22,24 @@ module.exports = {
         return finalGroups
 
     },
-    byStrength: (studentList, shouldShuffle) => {
+    distributeEvenlyByStrengthLevel: (studentList, shouldShuffle) => {
 
         const strongStudents = studentList["strong"];
         const standardStudents = studentList["standard"];
-        // console.log(strongStudents);
-        // console.log(standardStudents);
+
         const groupSize = Math.floor( standardStudents.length / strongStudents.length );
         let remainder = standardStudents.length % strongStudents.length;
-        console.log(`${groupSize}, ${remainder}`);
 
         if (shouldShuffle) {
             strongStudents.shuffle();
             standardStudents.shuffle();
         };
 
-
         let finalGroups = strongStudents.map(student => [student]);
 
         while (standardStudents.length > 0) {
-            finalGroups = finalGroups.map(group => {
+
+            finalGroups = finalGroups.map(strongStudent => {
                 let subGroup;
 
                 if (remainder > 0) {
@@ -51,7 +49,7 @@ module.exports = {
                     subGroup = standardStudents.splice(0, groupSize);
                 }
         
-                return group.concat(subGroup);
+                return strongStudent.concat(subGroup);
             });
         };
         
