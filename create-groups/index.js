@@ -57,11 +57,3 @@ module.exports = {
     }
 };
 
-
-
-// standardStudents.length !== remainder ? 
-//                 finalGroups[groupNumber].push(standardStudents.splice(-groupSize)[0]) &&
-//                 groupNumber++ 
-//                 :
-//                 groupNumber = 0 &&
-//                 finalGroups[groupNumber].push(standardStudents.splice(-1)[0]);    
